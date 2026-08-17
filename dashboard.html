@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFS Hackathon | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+  </head>
+  <body class="dashboard-body auth-checking">
+    <div class="grid-overlay"></div>
+    <header class="dashboard-topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html" aria-label="CFS dashboard home">
+          <span class="brand-mark">C</span>
+          <span>CFS Hackathon</span>
+        </a>
+        <div class="topbar-actions">
+          <button id="logoutBtn" class="btn btn-ghost" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-shell">
+      <div class="container dashboard-container">
+        <aside class="sidebar card">
+          <div class="sidebar-header">
+            <span class="eyebrow">Submission Flow</span>
+            <h3>Project Tracker</h3>
+          </div>
+          <nav id="stepNav" class="step-nav" aria-label="Submission stages"></nav>
+        </aside>
+
+        <section class="main-panel card">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Welcome</span>
+              <h2>Team submission dashboard</h2>
+            </div>
+            <div id="submitStatusPill" class="status-pill status-pending">Draft</div>
+          </div>
+
+          <div id="loadingState" class="loading-wrap hidden">
+            <div class="loading-spinner"></div>
+            <p>Loading your submission...</p>
+          </div>
+
+          <form id="submissionForm" novalidate>
+            <section class="form-step active" data-step="1">
+              <div class="step-header">
+                <h3>Step 1 — Team Members</h3>
+              </div>
+              <div id="teamMembersContainer"></div>
+              <div class="inline-actions">
+                <button id="addMemberBtn" class="btn btn-secondary" type="button">+ Add Member</button>
+              </div>
+            </section>
+
+            <section class="form-step" data-step="2">
+              <div class="step-header">
+                <h3>Step 2 — Team / Registration Details</h3>
+              </div>
+              <div class="grid-two">
+                <div class="field-group">
+                  <label for="registrationNo">Team / Registration No.</label>
+                  <input id="registrationNo" name="registrationNo" type="text" maxlength="80" placeholder="Enter registration number" required />
+                </div>
+                <div class="field-group">
+                  <label for="teamName">Team Name</label>
+                  <input id="teamName" name="teamName" type="text" maxlength="100" placeholder="Enter your team name" required />
+                </div>
+              </div>
+            </section>
+
+            <section class="form-step" data-step="3">
+              <div class="step-header">
+                <h3>Step 3 — Project Details</h3>
+              </div>
+              <div class="grid-two">
+                <div class="field-group">
+                  <label for="leaderNameReadOnly">Team Leader Name</label>
+                  <input id="leaderNameReadOnly" type="text" readonly />
+                </div>
+                <div class="field-group">
+                  <label for="githubUrl">GitHub Repository Link</label>
+                  <input id="githubUrl" name="githubUrl" type="url" placeholder="https://github.com/your-team/project" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="presentationUrl">Presentation Link</label>
+                <input id="presentationUrl" name="presentationUrl" type="url" placeholder="https://drive.google.com/... or https://docs.google.com/..." required />
+                <small>Paste your presentation link (Google Drive, OneDrive, or any hosted PPT/PDF link).</small>
+              </div>
+
+              <div class="field-group">
+                <label for="videoUrl">Demo / Project Video Link</label>
+                <input id="videoUrl" name="videoUrl" type="url" placeholder="https://youtube.com/watch?v=..." required />
+                <small>Paste your demo video link — do not upload the video file.</small>
+              </div>
+            </section>
+
+            <section class="form-step" data-step="4">
+              <div class="step-header">
+                <h3>Step 4 — Review & Final Submit</h3>
+              </div>
+              <div id="reviewSummary" class="review-list"></div>
+            </section>
+
+            <div class="form-actions">
+              <button id="prevBtn" type="button" class="btn btn-secondary hidden">Previous</button>
+              <button id="nextBtn" type="button" class="btn btn-primary">Next</button>
+              <button id="submitBtn" type="button" class="btn btn-success hidden">Submit Final Project</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+    <div id="confirmModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-dialog card">
+        <h3>Confirm Submission</h3>
+        <p>Are you sure you want to submit your project? Make sure all information and files are correct.</p>
+        <div class="modal-actions">
+          <button id="cancelSubmitBtn" class="btn btn-secondary" type="button">Cancel</button>
+          <button id="confirmSubmitBtn" class="btn btn-success" type="button">Confirm Submission</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script type="module" src="./js/dashboard.js"></script>
+  </body>
+</html>

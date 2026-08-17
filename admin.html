@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFS Hackathon | Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+  <body class="admin-body auth-checking">
+    <div class="grid-overlay"></div>
+    <header class="dashboard-topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="admin.html" aria-label="Admin home">
+          <span class="brand-mark">C</span>
+          <span>CFS Hackathon</span>
+        </a>
+        <div class="topbar-actions">
+          <button id="adminLogoutBtn" class="btn btn-ghost" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-shell">
+      <div class="container admin-panel">
+        <section class="admin-header card">
+          <div>
+            <span class="eyebrow">Admin Portal</span>
+            <h1>CFS Hackathon — Admin Portal</h1>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <div class="stat-card card"><span>Total Participants</span><strong id="statParticipants">0</strong></div>
+          <div class="stat-card card"><span>Total Teams</span><strong id="statTeams">0</strong></div>
+          <div class="stat-card card"><span>Submitted</span><strong id="statSubmitted">0</strong></div>
+          <div class="stat-card card"><span>Pending</span><strong id="statPending">0</strong></div>
+        </section>
+
+        <section class="controls card">
+          <div class="control-row">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input id="searchInput" type="search" placeholder="Search team name, registration no., leader" />
+            </div>
+            <select id="statusFilter">
+              <option value="all">All</option>
+              <option value="submitted">Submitted</option>
+              <option value="pending">Pending</option>
+            </select>
+            <select id="sortSelect">
+              <option value="latest">Latest submission</option>
+              <option value="oldest">Oldest</option>
+              <option value="teamName">Team name</option>
+              <option value="registrationNo">Registration no.</option>
+            </select>
+          </div>
+        </section>
+
+        <section id="submissionList" class="submission-list"></section>
+      </div>
+    </main>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script type="module" src="./js/admin.js"></script>
+  </body>
+</html>

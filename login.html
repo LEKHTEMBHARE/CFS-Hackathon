@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFS Hackathon | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="auth-body">
+    <div class="grid-overlay"></div>
+    <div class="auth-shell">
+      <header class="auth-header container">
+        <a class="brand" href="index.html" aria-label="Home">
+          <span class="brand-mark">C</span>
+          <span>CFS Hackathon</span>
+        </a>
+      </header>
+
+      <main class="auth-layout">
+        <section class="auth-card card">
+          <div class="auth-intro">
+            <span class="eyebrow">Official portal</span>
+            <h1>CFS Hackathon</h1>
+            <p>Participant Submission Portal</p>
+          </div>
+
+          <form id="loginForm" class="auth-form" novalidate>
+            <div class="field-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="teamlead@example.com" required />
+            </div>
+
+            <div class="field-group">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+              <span class="btn-label">Login</span>
+            </button>
+          </form>
+
+          <div class="auth-actions">
+            <a href="admin-login.html" class="route-link">Admin Login</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script type="module" src="./js/login.js"></script>
+  </body>
+</html>

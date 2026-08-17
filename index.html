@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFS Hackathon</title>
+    <meta name="description" content="Official Code For Students Hackathon submission portal." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="landing-page">
+    <div class="grid-overlay"></div>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html" aria-label="CFS home">
+          <span class="brand-mark">C</span>
+          <span>CFS Hackathon</span>
+        </a>
+        <nav class="header-actions">
+          <a class="btn btn-ghost" href="admin-login.html">Admin Login</a>
+          <a class="btn btn-primary" href="login.html">Participant Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-space">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <span class="eyebrow">Code For Students</span>
+            <h1>CFS Hackathon</h1>
+            <h2>Build. Innovate. Submit.</h2>
+            <p>
+              Submit your hackathon project, GitHub repository, presentation, and demo video
+              through the official CFS submission portal.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary btn-lg" href="login.html">Participant Login</a>
+              <a class="btn btn-secondary btn-lg" href="#how-it-works">How it works</a>
+            </div>
+            <ul class="meta-pills">
+              <li><i data-lucide="check-circle"></i> Team submissions</li>
+              <li><i data-lucide="folder-open"></i> Storage ready</li>
+              <li><i data-lucide="rocket"></i> Live review</li>
+            </ul>
+          </div>
+
+          <div class="hero-card card">
+            <div class="card-badge">Submission Ready</div>
+            <div class="mini-grid">
+              <div class="mini-stat">
+                <span class="mini-label">Teams</span>
+                <strong>100+</strong>
+              </div>
+              <div class="mini-stat accent">
+                <span class="mini-label">Tracks</span>
+                <strong>12</strong>
+              </div>
+            </div>
+            <div class="progress-stack">
+              <div class="progress-item">
+                <div class="progress-head"><span>Project setup</span><span>Complete</span></div>
+                <div class="progress-bar"><span style="width:100%"></span></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-head"><span>Submission review</span><span>Live</span></div>
+                <div class="progress-bar"><span style="width:72%"></span></div>
+              </div>
+            </div>
+            <div class="feature-list">
+              <div><i data-lucide="code-2"></i> GitHub repository</div>
+              <div><i data-lucide="file-text"></i> PPT upload</div>
+              <div><i data-lucide="video"></i> Demo video link</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="section-space steps-section">
+        <div class="container">
+          <div class="section-heading center">
+            <span class="eyebrow">How It Works</span>
+            <h3>Three simple steps to submit</h3>
+          </div>
+          <div class="steps-grid">
+            <article class="step-card card">
+              <div class="step-number">01</div>
+              <i data-lucide="user"></i>
+              <h4>Login</h4>
+              <p>Use the credentials provided by the organizers to access your team dashboard.</p>
+            </article>
+            <article class="step-card card">
+              <div class="step-number">02</div>
+              <i data-lucide="clipboard-list"></i>
+              <h4>Complete details</h4>
+              <p>Add your members, project information, repository link, and presentation file.</p>
+            </article>
+            <article class="step-card card">
+              <div class="step-number">03</div>
+              <i data-lucide="send"></i>
+              <h4>Submit</h4>
+              <p>Review everything and send your final project for review before the deadline.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <div>
+          <a class="brand" href="index.html"><span class="brand-mark">C</span><span>CFS Hackathon</span></a>
+        </div>
+        <p>© 2026 Code For Students. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script type="module" src="./js/landing.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.role == 'admin';
+    }
+
+    match /hackathon-submissions/{uid}/{allPaths=**} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if isOwner(uid) &&
+        request.resource.size <= 20 * 1024 * 1024 &&
+        (
+          request.resource.contentType.matches('.*powerpoint.*') ||
+          request.resource.contentType.matches('.*presentation.*') ||
+          request.resource.name.matches('.*\\.(ppt|pptx)$')
+        );
+      allow delete: if isOwner(uid);
+    }
+
+    match /{allPaths=**} {
+      allow read: if false;
+      allow write: if false;
+    }
+  }
+}
