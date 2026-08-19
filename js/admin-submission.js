@@ -67,24 +67,41 @@ function readSubmissionLink(data, keys) {
   return "";
 }
 
-function normalizeLink(url) {
-  if (!url || typeof url !== "string") return "";
-  const trimmed = url.trim();
-  if (!trimmed) return "";
-  if (/^https?:\/\//i.test(trimmed) || /^mailto:/i.test(trimmed)) return trimmed;
-  if (/^\//.test(trimmed)) return trimmed;
-  return `https://${trimmed}`;
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
-function renderLinkCell(url, label) {
-  const normalized = normalizeLink(url);
-  if (!normalized) return "Not provided";
-  const text = normalized.length > 80 ? `${normalized.slice(0, 80)}...` : normalized;
+function isValidSubmittedUrl(value) {
+  const candidate = getLinkHref(value);
+  try {
+    const parsed = new URL(candidate);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function getLinkHref(value) {
+  const trimmed = String(value || "").trim();
+  return /^(?:https?:\/\/|mailto:|\/)/i.test(trimmed) ? trimmed : `https://${trimmed}`;
+}
+
+function renderLinkCell(value, label) {
+  if (typeof value !== "string" || !value.trim()) return "Not provided";
+  const submittedUrl = value.trim().replace(/[),.;!?]+$/g, "");
+  if (!isValidSubmittedUrl(submittedUrl)) return escapeHtml(value);
+
+  const href = getLinkHref(submittedUrl);
   return `
-    <div class="link-stack">
-      <a class="detail-link" href="${normalized}" target="_blank" rel="noreferrer" title="${normalized}">Open ${label}</a>
-      <small class="detail-link-url">${text}</small>
-    </div>
+    <span class="link-stack">
+      <a class="detail-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(submittedUrl)}">Open ${label}</a>
+      <small class="detail-link-url">${escapeHtml(submittedUrl)}</small>
+    </span>
   `;
 }
 
